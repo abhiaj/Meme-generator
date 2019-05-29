@@ -1,2 +1,9 @@
 Scripts for making a meme-generator
 
+setup React on your system by following the steps in the below url:
+https://reactjs.org/tutorial/tutorial.html#setup-for-the-tutorial
+
+Then create an app of desired namee following the steps mentioned in the link.
+
+Put the files "index.html" and "style.css" inside the "public" folder of your app folder
+Put rest of the files in "src" folder
