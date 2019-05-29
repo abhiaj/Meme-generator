@@ -5,11 +5,13 @@ class MemeGenerator extends React.Component
 	constructor(){
 		super()
 		this.state={
-			top: "hi",
-			bottom: "bi",
+			top: "",
+			bottom: "",
 			rand: "http://i.imgflip.com/1bij.jpg",
 			data: []
 		}
+
+		this.handleChange=this.handleChange.bind(this)
 	}
 
 	componentDidMount(){
@@ -29,10 +31,37 @@ class MemeGenerator extends React.Component
 			})
 	}
 
+	handleChange(event){
+		const {name,value}=event.target
+		this.setState( ()=>{
+			return{
+				[name]: value
+			}
+		})
+	}
+
 	render(){
 		return(
 			<div>
-				<h4>yoho</h4>
+				<form >
+					<input 
+						type="text"
+						value={this.state.top}
+						name="top"
+						placeHolder="top name"
+						onChange={this.handleChange}
+					/>
+					<input 
+						type="text"
+						value={this.state.bottom}
+						name="bottom"
+						placeHolder="bottom name"
+						onChange={this.handleChange}
+					/>
+					</br>
+					<button> Submit</button>
+
+				</form>
 			</div>
 		)
 	}
