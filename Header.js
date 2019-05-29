@@ -6,10 +6,16 @@ class Header extends React.Component{
 		super()
 		this.state={}
 	}
-	
+
 	render(){
 		return(
-			<h2> alpha</h2>
+			<header> 
+				<img 
+                src="http://www.pngall.com/wp-content/uploads/2016/05/Trollface.png" 
+                alt="Problem?"
+            	/>
+            	<p>Bleh</p>
+			</header>
 			)
 	}
 }
