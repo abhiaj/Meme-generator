@@ -48,7 +48,9 @@ class MemeGenerator extends React.Component
 
 	handleSubmit(event){
 		event.preventDefault()
-		const rand = Math.floor(Math.random() * this.state.dataimage.length)
+		const min = 0
+	    const max = this.state.dataimage.length
+	    const rand = Math.floor(min + Math.random() * (max - min))
 	    const str=this.state.dataimage[rand].url
 	    this.setState( prevState=>{
 	    	
