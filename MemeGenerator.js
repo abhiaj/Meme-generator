@@ -8,10 +8,11 @@ class MemeGenerator extends React.Component
 			top: "",
 			bottom: "",
 			rand: "http://i.imgflip.com/1bij.jpg",
-			data: []
+			dataimage: []
 		}
 
 		this.handleChange=this.handleChange.bind(this)
+		this.handleSubmit=this.handleSubmit.bind(this)
 	}
 
 	componentDidMount(){
@@ -21,29 +22,46 @@ class MemeGenerator extends React.Component
 			.then(item=>item.json())
 		//assignign state the data from api call
 		// .data.memes is an array that needs to be assigned here
-			.then(item=> {
-				console.log(item.data.memes[0])
-				this.setState(prevState=>{
+			.then( item=> {
+				//console.log(item.data.memes[0])
+				const memes = item.data.memes
+				this.setState(()=>{
 					return{
-						data: item.data.memes
+						dataimage: memes
+						//rand: item.data.memes[3].url
 					}
 				})
 			})
 	}
 
 	handleChange(event){
+		//const str=this.state.data[4].url
+		
 		const {name,value}=event.target
 		this.setState( ()=>{
 			return{
-				[name]: value
+				[name]: value,
+				//rand:str
 			}
 		})
+	}
+
+	handleSubmit(event){
+		event.preventDefault()
+		const rand = Math.floor(Math.random() * this.state.dataimage.length)
+	    const str=this.state.dataimage[rand].url
+	    this.setState( prevState=>{
+	    	
+	    	return{
+	    		rand: str
+	    	}
+	    })
 	}
 
 	render(){
 		return(
 			<div>
-				<form >
+				<form onSubmit={this.handleSubmit}>
 					<input 
 						type="text"
 						value={this.state.top}
@@ -58,10 +76,15 @@ class MemeGenerator extends React.Component
 						placeHolder="bottom name"
 						onChange={this.handleChange}
 					/>
-					</br>
+					<br/>
 					<button> Submit</button>
 
 				</form>
+				<div className="meme">
+					<img src={this.state.rand} alt="" />
+                    <h2 className="top">{this.state.top}</h2>
+                    <h2 className="bottom">{this.state.bottom}</h2>
+				</div>
 			</div>
 		)
 	}
